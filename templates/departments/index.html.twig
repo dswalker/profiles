@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Departments{% endblock %}
+
+{% block body %}
+
+<h1>Departments</h1>
+
+<ul>
+{% for college in colleges %}
+	<li>{{ college.name }}</li>
+		{% if college.schools is not empty %}
+    		<ul>
+        	{% for school in college.schools %}
+        		<li>{{ school.name }}
+        			<ul>
+                	{% for department in school.departments %}
+                		<li>{{ department.name }}</li>
+                	{% endfor %}
+                	</ul>
+                </li>
+        	{% endfor %}
+        	</ul>
+        {% endif %}
+		<ul>
+    	{% for department in college.departments %}
+    		<li>{{ department.name }}</li>
+    	{% endfor %}
+    	</ul>
+{% endfor %}
+</ul>
+
+{% endblock %}
